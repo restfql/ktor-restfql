@@ -1,8 +1,8 @@
-group = "org.example"
-version = "1.0"
+group = "com.restfql"
+version = "1.0.0"
 
-val ktor_version = "2.+"
-val gql_version = "16.+"
+val ktor_version = "[2,)"
+val gql_version = "[16,)"
 
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.8.10"
@@ -32,11 +32,19 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/restfql")
+            url = uri("https://maven.pkg.github.com/restfql/ktor-restfql")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
             }
+        }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            groupId = "com.restfql"
+            artifactId = "ktor-restfql"
+            version = "1.0.0"
+            from(components["kotlin"])
         }
     }
 }
