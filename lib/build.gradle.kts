@@ -43,7 +43,7 @@ publishing {
         register<MavenPublication>("gpr") {
             groupId = "com.restfql"
             artifactId = "ktor-restfql"
-            version = "1.0.0"
+            version = "1.0.${System.getenv("GITHUB_RUN_NUMBER")}"
             from(components["kotlin"])
         }
     }
